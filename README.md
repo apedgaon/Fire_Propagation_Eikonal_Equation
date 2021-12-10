@@ -1,1 +1,1 @@
-# Fire_Propagation_Eikonal_Equation
+# Modelling Fire Propagation using Eikonal Equation
