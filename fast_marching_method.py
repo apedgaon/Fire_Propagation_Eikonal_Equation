@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import heapq as hq
 
 def node_num(idx, jdx, Nt):
     return idx * Nt + jdx
@@ -21,10 +22,10 @@ xg, yg = np.meshgrid(x, y)
 
 large = 1.0e9
 u = large * np.ones([Nt, Nt])
-u[0, :] = 1.0
-u[-1, :] = 1.0
-u[:, 0] = 1.0
-u[:, -1] = 1.0
+u[0, :] = 0.0
+u[-1, :] = 0.0
+u[:, 0] = 0.0
+u[:, -1] = 0.0
 f = np.sin(np.pi * xg)
 
 alive = []

@@ -13,11 +13,11 @@ xg, yg = np.meshgrid(x, y)
 
 large = 1.0e9
 u = large * np.ones([Nt, Nt])
-u[0, :] = 1.0
-u[-1, :] = 1.0
+u[0, :] = 0.0
+u[-1, :] = 0.0
 
-u[:, 0] = 1.0
-u[:, -1] = 1.0
+u[:, 0] = 0.0
+u[:, -1] = 0.0
 
 #F = np.ones((Nt, Nt)) * np.exp(-yg)
 F = np.ones((Nt, Nt))
