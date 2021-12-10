@@ -11,7 +11,7 @@ def node_idx(node_num, Nt):
     return idx, jdx
 
 L = 1.0
-divs = 100
+divs = 10
 Nt = divs + 1
 h = L / divs
 N = divs - 1
@@ -29,10 +29,20 @@ u[:, -1] = 0.0
 f = np.sin(np.pi * xg)
 
 alive = []
-for idx in range(Nt):
-    alive.append((0, idx))
+# for idx in range(Nt):
+#     alive.append((0, idx))
 
-print(type(alive[0]))
+for idx in range(0, Nt):
+    for jdx in range(0, Nt):
+        if (abs(u[idx,jdx] - 0.0) < 1.0e-8):
+            alive.append(node_num(idx, jdx, Nt))
+
+print(alive)
+hq.heapify(alive)
+hq.heappush(alive, 23)
+hq.heappush(alive, 90)
+hq.heappush(alive, 37)
+print(alive)
 # for idx in range(Nt):
 #     for jdx in range(Nt):
 #         u[jdx, idx] = 1
