@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import heapq as hq
+import time
 
 def node_num(idx, jdx, Nt):
     return idx * Nt + jdx
@@ -52,6 +53,7 @@ f = np.ones((Nt, Nt))
 plt.contourf(xg, yg, u)
 plt.show()
 
+start = time.time()
 alive = []
 narrow = []
 far = []
@@ -95,6 +97,8 @@ while len(narrow):
         cn = (u[nnidx, nnjdx], node_num(nnidx, nnjdx, Nt))
         hq.heappush(narrow, cn)
 
+end = time.time()
+print("time = ", end - start)
 print(iter)
 plt.contourf(xg, yg, u)
 plt.show()

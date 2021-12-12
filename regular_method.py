@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 def eikonal_solver(idx, jdx, u, Nt, F):
     if (idx == 0):
@@ -44,6 +45,7 @@ F = np.ones((Nt, Nt))
 #F = 0.05 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
 plt.contourf(xg, yg, u)
 plt.show()
+start = time.time()
 nitermax = 4000
 for niter in range(0, nitermax):
     utemp = np.copy(u)
@@ -56,6 +58,8 @@ for niter in range(0, nitermax):
         print(niter)
         break
 
+end = time.time()
+print("time = ", end - start)
+
 plt.contourf(xg, yg, u)
 plt.show()
-print(u)
