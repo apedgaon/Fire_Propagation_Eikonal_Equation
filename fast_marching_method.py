@@ -55,9 +55,6 @@ plt.show()
 alive = []
 narrow = []
 far = []
-# for idx in range(Nt):
-#     alive.append((0, idx))
-
 for idx in range(0, Nt):
     for jdx in range(0, Nt):
         if (abs(u[idx,jdx] - 0.0) < 1.0e-8):
