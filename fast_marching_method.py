@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import heapq as hq
 import time
+import eikonal_update as eik
 
 def node_num(idx, jdx, Nt):
     return idx * Nt + jdx
@@ -10,26 +11,6 @@ def node_idx(node_num, Nt):
     jdx = int(node_num % Nt)
     idx = int((node_num - jdx) / Nt)
     return idx, jdx
-
-def eikonal_solver(idx, jdx, u, Nt, F):
-    if (idx == 0):
-        U_H = min(u[1, jdx], 0)
-    elif (idx == Nt - 1):
-        U_H = min(u[Nt - 2, jdx], 0)
-    else:
-        U_H = min(u[idx - 1, jdx], u[idx + 1, jdx])
-
-    if (jdx == 0):
-        U_V = min(u[idx, 1], 0)
-    elif (jdx == Nt - 1):
-        U_V = min(u[idx, Nt - 2], 0)
-    else:
-        U_V = min(u[idx, jdx - 1], u[idx, jdx + 1])
-
-    if (abs(U_H - U_V) > h / F[idx, jdx]):
-        u[idx, jdx] = min(U_H, U_V) + h / F[idx, jdx]
-    else:
-        u[idx, jdx] = 0.5 * ((U_H + U_V) + np.sqrt((U_H + U_V)**2 - 2 * (U_H**2 + U_V**2 - (h/F[idx,jdx])**2)))
 
 L = 1.0
 divs = 100
@@ -92,7 +73,7 @@ while len(narrow):
     for indices in new_indices:
         nnidx = indices[0]
         nnjdx = indices[1]
-        eikonal_solver(nnidx, nnjdx, u, Nt, F)
+        eik.eikonal_quad_eq_solver(nnidx, nnjdx, u, Nt, F, h)
         iter = iter + 1
         cn = (u[nnidx, nnjdx], node_num(nnidx, nnjdx, Nt))
         hq.heappush(narrow, cn)
