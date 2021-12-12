@@ -48,7 +48,7 @@ u[-1, :] = 0.0
 u[:, 0] = 0.0
 u[:, -1] = 0.0
 #f = 1.0 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
-f = np.ones((Nt, Nt))
+F = np.ones((Nt, Nt))
 
 plt.contourf(xg, yg, u)
 plt.show()
@@ -65,7 +65,7 @@ for idx in range(0, Nt):
 for idx in range(1, Nt - 1):
     for jdx in range(1, Nt - 1):
         if (idx == 1 or idx == Nt - 2 or jdx == 1 or jdx == Nt - 2):
-            u[idx, jdx] = h / f[idx, jdx]
+            u[idx, jdx] = h / F[idx, jdx]
             narrow.append((u[idx, jdx], node_num(idx, jdx, Nt)))
 
 for idx in range(2, Nt - 2):
@@ -92,7 +92,7 @@ while len(narrow):
     for indices in new_indices:
         nnidx = indices[0]
         nnjdx = indices[1]
-        eikonal_solver(nnidx, nnjdx, u, Nt, f)
+        eikonal_solver(nnidx, nnjdx, u, Nt, F)
         iter = iter + 1
         cn = (u[nnidx, nnjdx], node_num(nnidx, nnjdx, Nt))
         hq.heappush(narrow, cn)
