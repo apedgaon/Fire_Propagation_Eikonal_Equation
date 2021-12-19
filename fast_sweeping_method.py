@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import eikonal_update as eik
 
-levels = 8
+levels = 6
 initial = 10
 nlist = []
 timelist = []
@@ -61,4 +61,8 @@ plt.plot(nlist, [x*np.log(x) for x in nlist], 'g--')
 plt.plot(nlist, [x**2 for x in nlist], 'r--')
 plt.xscale("log")
 plt.yscale("log")
+plt.xlabel("N (number of grid points)")
+plt.ylabel("time (s)")
+plt.title("Time complexity of Fast Sweeping Method")
+plt.legend(["Fast Sweeping Method", "$\mathcal{O}(N)$", "$\mathcal{O}(N log(N))$", "$\mathcal{O}(N^2)$"])
 plt.show()
