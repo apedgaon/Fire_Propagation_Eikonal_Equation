@@ -5,4 +5,4 @@ Three methods for solving eikonal equation implemented:
 - fast_marching_method.py
 - fast_sweeping_method.py
 
-Helper file for eikonal quadratic equaiton solution in eikonal_update.py
+Helper file for eikonal quadratic equation solution in eikonal_update.py
