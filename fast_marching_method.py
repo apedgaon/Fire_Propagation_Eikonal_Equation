@@ -33,11 +33,9 @@ for level in range(levels):
     u[-1, :] = 0.0
     u[:, 0] = 0.0
     u[:, -1] = 0.0
-    #f = 1.0 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
-    F = np.ones((Nt, Nt))
 
-    #plt.contourf(xg, yg, u)
-    #plt.show()
+    F = np.ones((Nt, Nt))
+    #F = 0.1 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
 
     start = time.time()
     alive = []
@@ -84,11 +82,12 @@ for level in range(levels):
             hq.heappush(narrow, cn)
 
     end = time.time()
-    #print("time = ", end - start)
-    #print(iter)
     nlist.append(N**2)
     timelist.append(end - start)
     #plt.contourf(xg, yg, u)
+    # plt.title("Contour Plot for Dirichlet problem with $F = 1$")
+    # plt.xlabel("x")
+    # plt.ylabel("y")
     #plt.show()
 
 

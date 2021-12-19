@@ -26,11 +26,9 @@ for level in range(levels):
     u[:, 0] = 0.0
     u[:, -1] = 0.0
 
-    #F = np.ones((Nt, Nt)) * np.exp(-yg)
     F = np.ones((Nt, Nt))
-    #F = 0.05 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
-    #plt.contourf(xg, yg, u)
-    #plt.show()
+    #F = 0.1 + np.sin(np.pi * xg) + np.sin(np.pi * yg)
+
     start = time.time()
     nitermax = 4000
     for niter in range(0, nitermax):
@@ -48,9 +46,11 @@ for level in range(levels):
 
     nlist.append(N**2)
     timelist.append(end - start)
-    #print("time = ", end - start)
 
     #plt.contourf(xg, yg, u)
+    # plt.title("Contour Plot for Dirichlet problem with $F = 1$")
+    # plt.xlabel("x")
+    # plt.ylabel("y")
     #plt.show()
 
 print(nlist)
